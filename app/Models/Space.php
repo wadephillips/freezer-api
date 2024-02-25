@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Space extends Model
 {
     protected $guarded = ['id'];
-    protected $visible= [];
+
+    protected $visible = [];
 
     public function sections(): HasMany
     {

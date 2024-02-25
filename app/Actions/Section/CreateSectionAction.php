@@ -7,11 +7,12 @@ use App\Models\Space;
 
 class CreateSectionAction
 {
-    function execute(string $name, string $description, Space|int $space)
+    public function execute(string $name, string $description, Space|int $space)
     {
         if ($space instanceof Space) {
             $space = $space->id;
         }
+
         return Section::create([
             'name' => $name,
             'description' => $description,

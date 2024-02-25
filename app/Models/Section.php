@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Section extends Model
 {
-
     protected $guarded = [
         'id',
     ];
@@ -18,5 +17,4 @@ class Section extends Model
     {
         return $this->belongsTo(Space::class);
     }
-
 }
