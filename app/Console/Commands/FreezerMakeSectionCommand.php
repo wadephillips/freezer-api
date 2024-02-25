@@ -32,7 +32,7 @@ class FreezerMakeSectionCommand extends Command
             }
             //set up a name & description
             $name = $this->argument('name') ?? text('Please name this section'); //set up the description
-            $description = $this->argument('description') ?? text('Please provide a description of the space');
+            $description = $this->argument('description') ?? text('Please provide a description of the section');
 
             $createSectionAction->execute($name, $description, $space);
         } catch (Exception $e) {

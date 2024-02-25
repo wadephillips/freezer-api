@@ -1,9 +1,8 @@
 <?php
 
-uses(Illuminate\Support\Facades\Artisan::class);
+//uses(Illuminate\Support\Facades\Artisan::class);
 
 it('has a command for creating a new Space', function () {
-    $response = Artisan::call('freezer:make-space');
+    $this->artisan('freezer:make-space Main')->expectsOutput('Main created!');
 
-    $this->assertContains('beer', $response);
 });
