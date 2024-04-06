@@ -18,7 +18,7 @@ class Item extends Model
     protected function section(): BelongsTo
     {
 
-        return $this->belongsTo(Section::class);
+        return $this->belongsToMany(Section::class, 'space_items');
     }
 
 }

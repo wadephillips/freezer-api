@@ -12,7 +12,7 @@ return new class extends Migration {
         Schema::create('space_items', function (Blueprint $table) {
 
             $table->id();
-            $table->foreignId('space_id')->references('id')->on('spaces');
+            $table->foreignId('section_id')->references('id')->on('sections');
             $table->foreignId('item_id')->references('id')->on('items');
             $table->unsignedSmallInteger('quantity');
             $table->smallInteger('order')->nullable();
