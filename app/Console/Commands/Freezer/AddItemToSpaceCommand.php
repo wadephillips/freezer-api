@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands\Freezer;
 
+use App\Actions\AddItemToSectionAction;
 use App\Models\Item;
 use App\Models\Section;
 use App\Models\Space;
@@ -18,7 +19,7 @@ class AddItemToSpaceCommand extends Command
 
     protected $description = 'Assign Item(s) to a Section of a Space';
 
-    public function handle(): void
+    public function handle(AddItemToSectionAction $addItemToSectionAction): void
     {
         $spaces = Space::select(['id', 'name'])->with(['sections'])->get();
         $spaceChoice = select('Where would you like to store your item?', $spaces->pluck('name', 'id'));
@@ -37,8 +38,7 @@ class AddItemToSpaceCommand extends Command
 
         $quantity = text('How many?');
 
-        $section->items()->attach($item, ["quantity" => $quantity]);
-
+        $addItemToSectionAction->execute($item, $section, $quantity);
         //todo resume
     }
 
