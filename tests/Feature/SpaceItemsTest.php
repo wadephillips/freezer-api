@@ -1,5 +1,6 @@
 <?php
 
+use App\Actions\AddItemToSectionAction;
 use App\Models\Item;
 use App\Models\Section;
 use App\Models\Space;
@@ -28,3 +29,26 @@ it('adds an item to a space', function () {
     //$this->assertDatabaseHas('section_items', ['section_id' => $section->id, 'item_id' => $item->id, 'quantitiy' => 5,]);
     todo('expect to see some db tests');//todo
 })->todo();
+
+it('displays a list of items in a space', function () {
+
+    $spaces = Space::factory(2)->create();
+    $space = $spaces->first();
+    $sections = Section::factory(2)->create(['space_id' => $space->id,]);
+    $section = $sections->first();
+    $items = Item::factory(1)->create();
+    $j = 1;
+    $action = new AddItemToSectionAction();
+    $items->each(fn($i) => $action->execute($i, $section, $j++));
+
+    $storedItems = $section->items()->get()->map(function (Item $item) {
+
+        return [$item->name, $item->pivot->quantity, $item->description];
+    });
+
+    $this->artisan('freezer:show-space')
+        ->expectsChoice('Which space would you like to see?', 1, $spaces->pluck('name','id')->toArray())
+        ->expectsOutputToContain($section->name)
+        ->expectsTable(['Name', 'Quantity', 'Description'], $storedItems)// todo make this work with Prompts table
+    ;
+});

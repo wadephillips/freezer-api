@@ -24,6 +24,6 @@ class Section extends Model
     public function items(): BelongsToMany
     {
 
-        return $this->belongsToMany(Item::class,'space_items');
+        return $this->belongsToMany(Item::class,'space_items')->withPivot(['quantity']);
     }
 }

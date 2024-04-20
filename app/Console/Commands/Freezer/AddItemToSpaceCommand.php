@@ -12,6 +12,7 @@ use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\search;
 use function Laravel\Prompts\select;
 use function Laravel\Prompts\text;
+use function Laravel\Prompts\info;
 
 class AddItemToSpaceCommand extends Command
 {
