@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Space\CreateSpaceAction;
 use App\Models\Space;
 use Illuminate\Http\Request;
 
@@ -13,8 +14,12 @@ class SpaceController extends Controller
         return response(Space::all(), 200);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, CreateSpaceAction $action)
     {
+
+        $space = $action->execute($request->get('name'));
+
+        return response($space);
     }
 
     public function show(Space $space)
