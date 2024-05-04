@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Actions\Space\CreateSpaceAction;
 use App\Actions\Space\UpdateSpaceAction;
 use App\Http\Requests\CreateSpaceRequest;
+use App\Http\Resources\SpaceResource;
 use App\Models\Space;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,7 @@ class SpaceController extends Controller
 
     public function show(Space $space)
     {
-        return $space->load(['sections.items']);
+        return new SpaceResource($space->load(['sections.items']));
     }
 
     public function update(CreateSpaceRequest $request, Space $space, UpdateSpaceAction $action)

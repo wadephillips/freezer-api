@@ -18,7 +18,7 @@ class SpaceResource extends JsonResource
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
             'sectionsCount' => $this->whenLoaded('sections', $this->sections->count()),
-            'sections' => $this->whenLoaded('sections'),
+            'sections' => $this->whenLoaded('sections', SectionResource::collection($this->sections)),
         ];
     }
 
