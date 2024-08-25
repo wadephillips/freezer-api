@@ -21,7 +21,7 @@ class SpaceController extends Controller
     {
 
         $space = $action->execute($request->get('name'));
-        return response($space);
+        return response()->json($space);
     }
 
     public function show(Space $space)
@@ -37,7 +37,8 @@ class SpaceController extends Controller
 
     public function destroy(Space $space)
     {
-        return response($space->delete());
+        $deleted = $space->delete() ? 204: 400;
+        return response(status: $deleted);
     }
 
 }

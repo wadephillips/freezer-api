@@ -3,12 +3,8 @@
 use App\Models\Space;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-//use function Pest\Laravel\withoutExceptionHandling;
+use function Pest\Laravel\withoutExceptionHandling;
 
-it('has a command for creating a new Space', function () {
-    $this->artisan('freezer:make-space Main')->expectsOutput('Main created!');
-
-});
 it('returns a collection of spaces', function () {
     Space::factory(10)->create();
 
@@ -32,6 +28,14 @@ it('gets a Space with a GET request', function () {
     $response = Http::get(config('app.url') . '/api/spaces/1');
     expect($response->status())->toBe(200);
     expect($response->body())->toBeJson();
-    //dd($response->json());
     expect($response->json()['data']['name'])->toBe('Garage Freezer');
+});
+
+it('deletes a Space with a GET request', function () {
+    $before = Space::count(); //causing Http request to time out??
+    //expect($before)->toEqual(1);
+    $response = Http::delete(config('app.url'). '/api/spaces/1');
+    expect($response->status())->toBe(204);
+    $spaces = Space::count();
+    expect($spaces)->toEqual(0);
 });

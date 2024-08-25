@@ -10,7 +10,7 @@ class CreateSpaceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'unique:App\Models\Space,name'],
+            'name' => ['required', 'string'],
         ];
     }
 }
