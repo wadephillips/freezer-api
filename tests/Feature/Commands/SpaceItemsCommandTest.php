@@ -28,7 +28,7 @@ it('adds an item to a space', function () {
     //$this->assertDatabaseCount('section_items', 1);
     //$this->assertDatabaseHas('section_items', ['section_id' => $section->id, 'item_id' => $item->id, 'quantitiy' => 5,]);
     todo('expect to see some db tests');//todo
-})->todo();
+});
 
 it('displays a list of items in a space', function () {
 
