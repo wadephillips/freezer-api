@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\SpaceItem;
+use App\Models\SectionItem;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Carbon;
 
-class SpaceItemFactory extends Factory
+class SectionItemFactory extends Factory
 {
-    protected $model = SpaceItem::class;
+    protected $model = SectionItem::class;
 
     public function definition(): array
     {

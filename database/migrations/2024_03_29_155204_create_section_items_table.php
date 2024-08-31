@@ -9,7 +9,7 @@
     public function up(): void
     {
 
-        Schema::create('space_items', function (Blueprint $table) {
+        Schema::create('section_items', function (Blueprint $table) {
 
             $table->id();
             $table->foreignId('section_id')->references('id')->on('sections');
@@ -23,6 +23,6 @@
     public function down(): void
     {
 
-        Schema::dropIfExists('space_items');
+        Schema::dropIfExists('section_items');
     }
 };
