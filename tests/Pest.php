@@ -11,12 +11,13 @@
 |
 */
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(
     Tests\TestCase::class,
-    Illuminate\Foundation\Testing\RefreshDatabase::class,
-    //DatabaseMigrations::class
+    //RefreshDatabase::class,
+    DatabaseTransactions::class
 )->afterAll(function () {
     parent::tearDown();
 })->in('Feature');
@@ -32,9 +33,11 @@ uses(
 |
 */
 
-expect()->extend('toBeOne', function () {
-    return $this->toBe(1);
-});
+//expect()->extend('toBeOne', function () {
+//    return $this->toBe(1);
+//});
+
+expect()->extend('toBeOk', fn() => $this->toBe(200));
 
 /*
 |--------------------------------------------------------------------------
