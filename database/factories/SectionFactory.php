@@ -9,7 +9,6 @@ use Illuminate\Support\Carbon;
 
 class SectionFactory extends Factory
 {
-
     protected $model = Section::class;
 
     public function definition(): array
@@ -23,5 +22,4 @@ class SectionFactory extends Factory
             'space_id' => Space::factory(),
         ];
     }
-
 }

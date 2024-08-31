@@ -8,7 +8,6 @@ use Illuminate\Support\Carbon;
 
 class SpaceItemFactory extends Factory
 {
-
     protected $model = SpaceItem::class;
 
     public function definition(): array
@@ -23,5 +22,4 @@ class SpaceItemFactory extends Factory
             'order' => $this->faker->randomNumber(),
         ];
     }
-
 }

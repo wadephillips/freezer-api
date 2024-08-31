@@ -6,13 +6,11 @@ use App\Models\Item;
 use App\Models\Space;
 use Illuminate\Console\Command;
 
-use function Laravel\Prompts\select;
-use function Laravel\Prompts\table;
 use function Laravel\Prompts\info;
+use function Laravel\Prompts\select;
 
 class ShowSpaceCommand extends Command
 {
-
     protected $signature = 'freezer:show-space';
 
     protected $description = 'Show a table for each section with a listing of all the items in the space';
@@ -27,11 +25,10 @@ class ShowSpaceCommand extends Command
             info($section->name);
             $items = $section->items->map(function (Item $item) {
 
-                return ['name' => $item->name, 'quantity' => $item->pivot->quantity, 'description' => $item->description,];
+                return ['name' => $item->name, 'quantity' => $item->pivot->quantity, 'description' => $item->description];
             });
 
             $this->table(['Name', 'Quantity', 'Description'], $items);
         }
     }
-
 }

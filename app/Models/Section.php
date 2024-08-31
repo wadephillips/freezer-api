@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Section extends Model
 {
     use HasFactory;
+
     protected $guarded = [
         'id',
     ];
@@ -24,6 +25,6 @@ class Section extends Model
     public function items(): BelongsToMany
     {
 
-        return $this->belongsToMany(Item::class,'space_items')->withPivot(['quantity']);
+        return $this->belongsToMany(Item::class, 'space_items')->withPivot(['quantity']);
     }
 }

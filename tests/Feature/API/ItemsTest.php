@@ -8,7 +8,7 @@ it('shows a list of available items', function () {
     $items = Item::factory()->count(10)->create();
     $indb = Item::count();
     expect($indb)->toBe(10);
-    $response = $this->get(config('app.url') . '/api/items');
+    $response = $this->get(config('app.url').'/api/items');
     expect($response->status())->toBeOk();
     expect(count($response->json()))->toEqual(10);
 });
@@ -31,7 +31,7 @@ it('saves a new item', function () {
 
 it('requires a name, description, and size to create an item', function ($name, $description, $size) {
 
-    $response = $this->post(route('items.store'), ['name' => $name, 'description' => $description, 'size' => $size] , ['Accept' => 'application/json']);
+    $response = $this->post(route('items.store'), ['name' => $name, 'description' => $description, 'size' => $size], ['Accept' => 'application/json']);
     expect($response->getStatusCode())->toBe(422);
 
 })->with([
@@ -48,7 +48,7 @@ it('retrieves a specific Item', function () {
     $item = Item::factory(1)->create(['name' => 'House Freezer'])->first();
     $this->assertDatabaseHas('items', ['name' => 'House Freezer']);
 
-    $response = $this->get(route('items.show', ['item' => $item->id,]));
+    $response = $this->get(route('items.show', ['item' => $item->id]));
     $response->assertOk();
     $response->assertJsonIsObject();
     expect($response->json())->toHaveKey('name', 'House Freezer');

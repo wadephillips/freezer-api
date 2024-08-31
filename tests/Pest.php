@@ -12,7 +12,6 @@
 */
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(
     Tests\TestCase::class,
@@ -37,7 +36,7 @@ uses(
 //    return $this->toBe(1);
 //});
 
-expect()->extend('toBeOk', fn() => $this->toBe(200));
+expect()->extend('toBeOk', fn () => $this->toBe(200));
 
 /*
 |--------------------------------------------------------------------------

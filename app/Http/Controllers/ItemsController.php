@@ -9,10 +9,10 @@ use Illuminate\Http\Request;
 
 class ItemsController extends Controller
 {
-
     public function index()
     {
         $items = Item::all();
+
         return response($items);
     }
 
@@ -21,6 +21,7 @@ class ItemsController extends Controller
 
         $valid = $request->validated();
         $item = $action->execute($valid['name'], $valid['description'], $valid['size']);
+
         return response()->json($item);
     }
 
@@ -29,12 +30,7 @@ class ItemsController extends Controller
         return response()->json($item);
     }
 
-    public function update(Request $request, Item $item)
-    {
-    }
+    public function update(Request $request, Item $item) {}
 
-    public function destroy(Item $item)
-    {
-    }
-
+    public function destroy(Item $item) {}
 }

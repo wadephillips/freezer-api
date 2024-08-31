@@ -7,6 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class SpaceItem extends Model //todo rename this, should be SectionItem
 {
-
     use HasFactory;
 }

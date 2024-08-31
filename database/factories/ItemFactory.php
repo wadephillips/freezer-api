@@ -8,7 +8,6 @@ use Illuminate\Support\Carbon;
 
 class ItemFactory extends Factory
 {
-
     protected $model = Item::class;
 
     public function definition(): array
@@ -22,5 +21,4 @@ class ItemFactory extends Factory
             'size' => $this->faker->word(),
         ];
     }
-
 }

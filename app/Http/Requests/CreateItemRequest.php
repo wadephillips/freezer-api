@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class CreateItemRequest extends FormRequest
 {
-
     public function rules(): array
     {
 
@@ -16,5 +15,4 @@ class CreateItemRequest extends FormRequest
             'size' => ['required', 'string', 'max:255'],
         ];
     }
-
 }

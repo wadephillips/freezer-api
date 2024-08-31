@@ -7,11 +7,9 @@ use App\Actions\Space\UpdateSpaceAction;
 use App\Http\Requests\CreateSpaceRequest;
 use App\Http\Resources\SpaceResource;
 use App\Models\Space;
-use Illuminate\Http\Request;
 
 class SpaceController extends Controller
 {
-
     public function index()
     {
         return response(Space::all(), 200);
@@ -21,6 +19,7 @@ class SpaceController extends Controller
     {
 
         $space = $action->execute($request->get('name'));
+
         return response()->json($space);
     }
 
@@ -32,13 +31,14 @@ class SpaceController extends Controller
     public function update(CreateSpaceRequest $request, Space $space, UpdateSpaceAction $action)
     {
         $input = $request->validated();
+
         return response()->json($action->execute($space, $input));
     }
 
     public function destroy(Space $space)
     {
-        $deleted = $space->delete() ? 204: 400;
+        $deleted = $space->delete() ? 204 : 400;
+
         return response(status: $deleted);
     }
-
 }

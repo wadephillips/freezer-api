@@ -8,7 +8,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 /** @mixin \App\Models\SpaceItem */
 class SectionItemResource extends JsonResource
 {
-
     public function toArray(Request $request): array
     {
 
@@ -22,5 +21,4 @@ class SectionItemResource extends JsonResource
             'updated_at' => $this->updated_at,
         ];
     }
-
 }

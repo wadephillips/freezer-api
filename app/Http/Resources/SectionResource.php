@@ -8,7 +8,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 /** @mixin \App\Models\Section */
 class SectionResource extends JsonResource
 {
-
     public function toArray(Request $request): array
     {
 
@@ -25,5 +24,4 @@ class SectionResource extends JsonResource
             'space' => new SpaceResource($this->whenLoaded('space')),
         ];
     }
-
 }

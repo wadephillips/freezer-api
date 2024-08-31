@@ -3,13 +3,11 @@
 namespace App\Console\Commands;
 
 use App\Actions\Item\CreateItemAction;
-use App\Models\Item;
 use Exception;
 use Illuminate\Console\Command;
 
 class FreezerMakeItemCommand extends Command
 {
-
     protected $signature = 'freezer:make-item {name?} {description?}';
 
     protected $description = 'Create an item for storing';
@@ -31,5 +29,4 @@ class FreezerMakeItemCommand extends Command
             $reRun = $this->confirm('Would you like to create another item?');
         } while ($reRun);
     }
-
 }

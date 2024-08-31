@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateSpaceRequest extends FormRequest
 {
-
     public function rules(): array
     {
 
@@ -14,5 +13,4 @@ class UpdateSpaceRequest extends FormRequest
             'name' => ['required'],
         ];
     }
-
 }
