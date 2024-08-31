@@ -38,5 +38,12 @@ class ItemsController extends Controller
         return response()->json($item)->setStatusCode(($saved) ? 200 : 400);
     }
 
-    public function destroy(Item $item) {}
+    public function destroy(Item $item)
+    {
+
+        $deleted = $item->delete();
+        $code = $deleted ? 203 : 400;
+
+        return response()->json()->setStatusCode($code);
+    }
 }

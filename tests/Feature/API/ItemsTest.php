@@ -53,6 +53,7 @@ it('retrieves a specific Item', function () {
     $response->assertJsonIsObject();
     expect($response->json())->toHaveKey('name', 'Hot Pockets');
 });
+
 it('updates an item', function () {
 
     $item = Item::factory(1)->create(['name' => 'Hot Pockets'])->first();
@@ -63,3 +64,16 @@ it('updates an item', function () {
     $response->assertJsonIsObject();
     expect($response->json())->toHaveKey('name', 'Hot Pocketzzz');
 });
+
+it('deletes an item', function () {
+
+    $item = Item::factory(1)->create(['name' => 'Hot Pockets'])->first();
+    $this->assertDatabaseHas('items', ['name' => 'Hot Pockets']);
+
+    $response = $this->delete(route('items.destroy', ['item' => $item->id]));
+    $response->assertStatus(203);
+    expect($response->json())->toBeEmpty();
+    $this->assertDatabaseEmpty('items');
+});
+
+it('does not allow deleting items that are in use', function () {})->todo();
