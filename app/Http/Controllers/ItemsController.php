@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Item\CreateItemAction;
+use App\Http\Requests\CreateItemRequest;
 use App\Models\Item;
 use Illuminate\Http\Request;
 
@@ -11,12 +13,15 @@ class ItemsController extends Controller
     public function index()
     {
         $items = Item::all();
-        //dd($items);
         return response($items);
     }
 
-    public function store(Request $request)
+    public function store(CreateItemRequest $request, CreateItemAction $action)
     {
+
+        $valid = $request->validated();
+        $item = $action->execute($valid['name'], $valid['description'], $valid['size']);
+        return response()->json($item);
     }
 
     public function show(Item $item)
