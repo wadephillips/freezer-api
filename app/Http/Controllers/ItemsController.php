@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Actions\Item\CreateItemAction;
 use App\Http\Requests\CreateItemRequest;
+use App\Http\Requests\UpdateItemRequest;
 use App\Models\Item;
-use Illuminate\Http\Request;
 
 class ItemsController extends Controller
 {
@@ -30,7 +30,13 @@ class ItemsController extends Controller
         return response()->json($item);
     }
 
-    public function update(Request $request, Item $item) {}
+    public function update(UpdateItemRequest $request, Item $item)
+    {
+
+        $saved = $item->update($request->validated());
+
+        return response()->json($item)->setStatusCode(($saved) ? 200 : 400);
+    }
 
     public function destroy(Item $item) {}
 }

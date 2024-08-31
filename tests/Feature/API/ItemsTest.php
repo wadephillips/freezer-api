@@ -45,11 +45,21 @@ it('requires a name, description, and size to create an item', function ($name, 
 
 it('retrieves a specific Item', function () {
 
-    $item = Item::factory(1)->create(['name' => 'House Freezer'])->first();
-    $this->assertDatabaseHas('items', ['name' => 'House Freezer']);
+    $item = Item::factory(1)->create(['name' => 'Hot Pockets'])->first();
+    $this->assertDatabaseHas('items', ['name' => 'Hot Pockets']);
 
     $response = $this->get(route('items.show', ['item' => $item->id]));
     $response->assertOk();
     $response->assertJsonIsObject();
-    expect($response->json())->toHaveKey('name', 'House Freezer');
+    expect($response->json())->toHaveKey('name', 'Hot Pockets');
+});
+it('updates an item', function () {
+
+    $item = Item::factory(1)->create(['name' => 'Hot Pockets'])->first();
+    $this->assertDatabaseHas('items', ['name' => 'Hot Pockets']);
+
+    $response = $this->patch(route('items.update', ['item' => $item->id]), ['name' => 'Hot Pocketzzz']);
+    $response->assertOk();
+    $response->assertJsonIsObject();
+    expect($response->json())->toHaveKey('name', 'Hot Pocketzzz');
 });
