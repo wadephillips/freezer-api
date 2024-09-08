@@ -19,12 +19,21 @@ it('returns a collection of all available sections', function () {
 
 it('creates a new Section from a POST request', function () {
 
-    //todo get a Space and add a section
-    $response = $this->post(route('sections.store', ['name' => 'Deep Right']));
+    $space = Space::factory()->create();
+    $response = $this->post(route('sections.store', ['name' => 'Deep Right', 'space_id' => $space->id]));
     expect($response->status())->toBe(200);
     $spaces = Section::count();
-    expect($spaces)->toEqual(1);
-
+    expect($spaces)->toEqual(1)
+        ->and($response->json())
+        ->toBeArray()
+        ->toHaveKey('name', 'Deep Right')
+        ->toHaveKey(
+            'description',
+            ''
+        )->toHaveKey('space_id', 1)
+        ->toHaveKey('items')
+        ->toHaveKey('unique_items_count')
+        ->toHaveKey('space');
 });
 
 it('gets a Section with a GET request', function () {

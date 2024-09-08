@@ -15,13 +15,13 @@ class SectionResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
-            'createdAt' => $this->created_at,
-            'updatedAt' => $this->updated_at,
-            'uniqueItemsCount' => $this->items->count(),
-            //'totalItemsCount' => $this->items->sum(),
+            'space_id' => $this->space_id,
             'items' => $this->whenLoaded('items', SectionItemResource::collection($this->items)),
-            'spaceId' => $this->space_id,
+            //'total_items_count' => $this->items->sum(),
+            'unique_items_count' => $this->items->count(),
             'space' => new SpaceResource($this->whenLoaded('space')),
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }
