@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ItemsController;
+use App\Http\Controllers\SectionController;
 use App\Http\Controllers\SpaceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::apiResource('/spaces', SpaceController::class);
 Route::apiResource('/items', ItemsController::class);
+Route::apiResource('/sections', SectionController::class);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

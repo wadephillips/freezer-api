@@ -4,7 +4,6 @@ use App\Models\Item;
 
 //use function Pest\Laravel\withoutExceptionHandling;
 it('shows a list of available items', function () {
-
     $items = Item::factory()->count(10)->create();
     $indb = Item::count();
     expect($indb)->toBe(10);

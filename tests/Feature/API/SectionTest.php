@@ -3,7 +3,9 @@
 use App\Models\Section;
 use App\Models\Space;
 
-it('returns a collection of spaces', function () {
+//todo resume: just copied all of this over and I'm starting to work on this.  Need to add routes and a controller. A good thing todo would be to bump laravel to 11x
+
+it('returns a collection of all available sections', function () {
 
     Space::factory(2)->create()
         ->each(fn ($space) => Section::factory(10)->create(['space_id' => $space->id]));
@@ -23,7 +25,7 @@ it('creates a new Section from a POST request', function () {
     $spaces = Section::count();
     expect($spaces)->toEqual(1);
 
-})->todo();
+});
 
 it('gets a Section with a GET request', function () {
     $before = Section::count();
