@@ -36,12 +36,15 @@ it('creates a new Section from a POST request', function () {
 it('gets a Section with a GET request', function () {
     $before = Section::count();
     expect($before)->toEqual(0);
-    Section::factory(1)->create(['name' => 'Garage Freezer']);
-    $response = $this->get(config('app.url').'/api/spaces/1');
-    expect($response->status())->toBe(200);
-    expect($response->json())->toBeArray();
-    expect($response->json()['data']['name'])->toBe('Garage Freezer');
-})->todo();
+    Section::factory(1)->create(['name' => 'Lower Right']);
+    $response = $this->get(config('app.url').'/api/sections/1');
+    $response->assertJsonIsObject();
+    $response->assertOk();
+    expect($response->json())
+        ->toBeArray()
+        ->toHaveKey('name', 'Lower Right')
+        ->toHaveKey('description');
+});
 
 it('retrieves all Sections for a specific Space', function () {})->todo();
 it('does not retrieve sections that do not belong to the specified space', function () {})->todo();

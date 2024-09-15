@@ -27,7 +27,10 @@ class SectionController extends Controller
         return response()->json(SectionResource::make($section));
     }
 
-    public function show(Section $section) {}
+    public function show(Section $section)
+    {
+        return response()->json(SectionResource::make($section));
+    }
 
     public function update(Request $request, Section $section) {}
 
