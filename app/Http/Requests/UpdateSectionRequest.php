@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateSectionRequest extends FormRequest
 {
-
     public function rules(): array
     {
 
@@ -16,5 +15,4 @@ class UpdateSectionRequest extends FormRequest
             'description' => ['nullable', 'string'],
         ];
     }
-
 }

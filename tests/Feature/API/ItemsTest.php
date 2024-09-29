@@ -21,11 +21,14 @@ it('saves a new item', function () {
 
     expect($response->isOk());
     $json = $response->json();
-    expect($json)->toBeArray();
-    expect(count($json))->toEqual(6);
-    expect($json)->toHaveKey('name', 'Hot Pockets');
-    expect($json)->toHaveKey('description', 'A big box of goopy melty food things');
-    expect($json)->toHaveKey('size', '20 pocket box');
+    expect(count($json))->toEqual(6)
+        ->and($json)->toBeArray()
+        ->toHaveKey('name', 'Hot Pockets')
+        ->toHaveKey(
+            'description',
+            'A big box of goopy melty food things'
+        )
+        ->toHaveKey('size', '20 pocket box');
 });
 
 it('requires a name, description, and size to create an item', function ($name, $description, $size) {

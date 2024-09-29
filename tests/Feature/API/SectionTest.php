@@ -37,7 +37,7 @@ it('gets a Section with a GET request', function () {
     $before = Section::count();
     expect($before)->toEqual(0);
     $section = Section::factory(1)->create(['name' => 'Lower Right'])->first();
-    $response = $this->get(route('sections.destroy', ['section' => $section->id,],['Accept' => 'application/json']));
+    $response = $this->get(route('sections.destroy', ['section' => $section->id], ['Accept' => 'application/json']));
     $response->assertJsonIsObject();
     $response->assertOk();
     expect($response->json())
@@ -49,13 +49,13 @@ it('gets a Section with a GET request', function () {
 it('updates a section', function () {
 
     $section = Section::factory(1)->for(Space::factory())->create(['name' => 'Lower Left'])->first();
-    $this->assertDatabaseHas('sections', ['name' => 'Lower Left',]);
+    $this->assertDatabaseHas('sections', ['name' => 'Lower Left']);
     $this->assertDatabaseCount('spaces', 1);
 
     $response = $this->patch(
-            route('sections.update', ['section' => $section->id]),
-            ['name' => 'Deep Left', 'space_id' => $section->space_id, ]
-        );
+        route('sections.update', ['section' => $section->id]),
+        ['name' => 'Deep Left', 'space_id' => $section->space_id]
+    );
 
     $response->assertOk();
     $response->assertJsonIsObject();
@@ -81,13 +81,12 @@ it('validates update requests and needs specific items', function ($name, $descr
     ['Middle Center', 'a description', 'foo'],
 ]);
 
-
 it('deletes a Section with a Delete request', function () {
     $before = Section::count(); //causing Http request to time out??
     expect($before)->toEqual(0);
     $section = Section::factory(1)->create()->first();
 
-    $response = $this->delete(route('sections.destroy', ['section' => $section->id,]));
+    $response = $this->delete(route('sections.destroy', ['section' => $section->id]));
 
     expect($response->status())->toBe(204);
     $spaces = Section::count();

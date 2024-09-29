@@ -7,7 +7,6 @@ use App\Http\Requests\StoreSectionRequest;
 use App\Http\Requests\UpdateSectionRequest;
 use App\Http\Resources\SectionResource;
 use App\Models\Section;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response as Status;
 
 class SectionController extends Controller
@@ -34,15 +33,19 @@ class SectionController extends Controller
         return response()->json(SectionResource::make($section));
     }
 
-    public function update(UpdateSectionRequest $request, Section $section) {
+    public function update(UpdateSectionRequest $request, Section $section)
+    {
 
         $validated = $request->validated();
         $section->update($validated);
+
         return response()->json(SectionResource::make($section));
     }
 
-    public function destroy(Section $section) {
+    public function destroy(Section $section)
+    {
         $deleted = $section->delete();
-        return response([],$deleted ? Status::HTTP_NO_CONTENT : Status::HTTP_BAD_REQUEST);
+
+        return response([], $deleted ? Status::HTTP_NO_CONTENT : Status::HTTP_BAD_REQUEST);
     }
 }
