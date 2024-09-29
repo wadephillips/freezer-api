@@ -3,6 +3,8 @@
 use App\Models\Section;
 use App\Models\Space;
 
+use function Pest\Laravel\withoutExceptionHandling;
+
 it('returns a collection of all available sections', function () {
 
     Space::factory(2)->create()
@@ -37,8 +39,7 @@ it('gets a Section with a GET request', function () {
     $before = Section::count();
     expect($before)->toEqual(0);
     $section = Section::factory(1)->create(['name' => 'Lower Right'])->first();
-    $response = $this->get(route('sections.destroy', ['section' => $section->id,]));
-    //$response = $this->get(config('app.url').'/api/sections/1');
+    $response = $this->get(route('sections.destroy', ['section' => $section->id,],['Accept' => 'application/json']));
     $response->assertJsonIsObject();
     $response->assertOk();
     expect($response->json())
@@ -46,6 +47,27 @@ it('gets a Section with a GET request', function () {
         ->toHaveKey('name', 'Lower Right')
         ->toHaveKey('description');
 });
+
+it('updates a section', function () {
+
+    $section = Section::factory(1)->for(Space::factory())->create(['name' => 'Lower Left'])->first();
+    $this->assertDatabaseHas('sections', ['name' => 'Lower Left',]);
+    $this->assertDatabaseCount('spaces', 1);
+
+    $response = $this->patch(
+            route('sections.update', ['section' => $section->id]),
+            ['name' => 'Deep Left', 'space_id' => $section->space_id, ]
+        );
+
+    $response->assertOk();
+    $response->assertJsonIsObject();
+    expect($response->json())->toHaveKey('name', 'Deep Left');
+
+});
+
+it('validates update requests and needs specific items', function () {
+
+})->todo();
 
 
 it('deletes a Section with a Delete request', function () {

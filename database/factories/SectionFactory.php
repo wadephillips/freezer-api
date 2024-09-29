@@ -15,7 +15,7 @@ class SectionFactory extends Factory
     {
 
         return [
-            'name' => $this->faker->name(),
+            'name' => 'Lower Left',
             'description' => $this->faker->text(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),

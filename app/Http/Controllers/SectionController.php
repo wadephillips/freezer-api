@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Actions\Section\CreateSectionAction;
 use App\Http\Requests\StoreSectionRequest;
+use App\Http\Requests\UpdateSectionRequest;
 use App\Http\Resources\SectionResource;
 use App\Models\Section;
 use Illuminate\Http\Request;
@@ -33,8 +34,11 @@ class SectionController extends Controller
         return response()->json(SectionResource::make($section));
     }
 
-    public function update(Request $request, Section $section) {
+    public function update(UpdateSectionRequest $request, Section $section) {
 
+        $validated = $request->validated();
+        $section->update($validated);
+        return response()->json(SectionResource::make($section));
     }
 
     public function destroy(Section $section) {
