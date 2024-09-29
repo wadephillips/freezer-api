@@ -3,8 +3,6 @@
 use App\Models\Section;
 use App\Models\Space;
 
-use function Pest\Laravel\withoutExceptionHandling;
-
 it('returns a collection of all available sections', function () {
 
     Space::factory(2)->create()
@@ -65,9 +63,23 @@ it('updates a section', function () {
 
 });
 
-it('validates update requests and needs specific items', function () {
+it('validates update requests and needs specific items', function ($name, $description, $spaceId) {
+    $section = Section::factory(1)->for(Space::factory())->create(['name' => 'Lower Left'])->first();
 
-})->todo();
+    $response = $this->patch(
+        route('sections.update', ['section' => $section->id]),
+        ['name' => $name, 'description' => $description, 'space_id' => $spaceId],
+        ['Accept' => 'application/json']
+    );
+    expect($response->getStatusCode())->toBe(422);
+})->with([
+    [null, 'a description', 1],
+    [1, 'a description', 1],
+    ['Middle Center', 22, 1],
+    ['Middle Center', 'a description', null],
+    ['Middle Center', 'a description', 0],
+    ['Middle Center', 'a description', 'foo'],
+]);
 
 
 it('deletes a Section with a Delete request', function () {
