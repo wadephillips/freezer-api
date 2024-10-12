@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Actions\Space\CreateSpaceAction;
 use App\Actions\Space\UpdateSpaceAction;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateSpaceRequest;
 use App\Http\Resources\SpaceResource;
 use App\Models\Space;
