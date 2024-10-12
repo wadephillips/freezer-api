@@ -19,4 +19,5 @@ class Space extends Model
 
         return $this->hasMany(Section::class);
     }
+
 }

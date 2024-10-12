@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\ProfileController;
+use App\Http\Controllers\Web\SpaceController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -20,7 +21,9 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/spaces', )
+Route::middleware('auth')->name('spaces.')->group(function(){
+    Route::get('/spaces', [SpaceController::class, 'index'])->name('index');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
