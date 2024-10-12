@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\ItemsController;
-use App\Http\Controllers\SectionController;
-use App\Http\Controllers\SpaceController;
-use App\Http\Controllers\SpaceSectionController;
+use App\Http\Controllers\Api\V1\ItemsController;
+use App\Http\Controllers\Api\V1\SectionController;
+use App\Http\Controllers\Api\V1\SpaceController;
+use App\Http\Controllers\Api\V1\SpaceSectionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
